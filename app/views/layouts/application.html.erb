@@ -12,8 +12,26 @@
 
   	<p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+<center>
+	
+		<% if current_user.nil? %>
 
+	<!-- 		<p>	<%= link_to "Sign up", new_user_registration_path %>  </p>
+			<p>	OR </p>
+			<p>	<%= link_to "Login", new_user_session_path %> </p>
+ -->
+		<% else %>
 
+			<p>Hi, <%= current_user.email %></p>
+      <p> <%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
+
+    <% end %>
     <%= yield %>
+  </center>
+
+
+
+
+
   </body>
 </html>

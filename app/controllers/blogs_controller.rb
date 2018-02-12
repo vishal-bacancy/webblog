@@ -1,10 +1,16 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_user
+
+  def set_user
+    @usr = User.find_by_email(current_user.email)
+  end
 
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
+    @blogs = @usr.blogs
   end
 
   # GET /blogs/1
@@ -24,12 +30,14 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
+    user = User.find_by_email(current_user.email)
     @blog = Blog.new(blog_params)
 
     respond_to do |format|
-      if @blog.save
+      if user.blogs.create(title:@blog.title, content:@blog.content)
         format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
         format.json { render :show, status: :created, location: @blog }
+        
       else
         format.html { render :new }
         format.json { render json: @blog.errors, status: :unprocessable_entity }

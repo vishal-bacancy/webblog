@@ -28,11 +28,10 @@
 <%= link_to 'New Blog', new_blog_path %>
 
 
-<% Blog.all.each do |b| %>
+<% Blog.all.order(created_at: :desc).each do |b| %>
 
 <p> <h4>Blog title : <b><%=b.title%></b></h4></p>
-<p> Created by : <%= b.user.email %></p>
-<p> Created at : <%= b.created_at %></p>
+<p> Created <%= time_ago_in_words(b.created_at) %> ago by <b><%= b.user.email %></b></p>
 <p>Content : <%= b.content %></p>
 
 <td><%= link_to 'Open this Blog', b %></td>

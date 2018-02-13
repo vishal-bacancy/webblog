@@ -11,14 +11,10 @@ window.alert("<%= notice %>")
 	  <%= @blog.title %>
 	</p>
 
-	<p>
-	  <strong>Created by:</strong>
-	  <%= @blog.user.email %>
-	</p>
+	
 
 	<p>
-	  <strong>Created at:</strong>
-	  <%= @blog.created_at %>
+	  Created <%= time_ago_in_words(@blog.created_at) %> ago by <b><%= @blog.user.email %></b>
 	</p>
 
 	<p>
@@ -31,12 +27,15 @@ window.alert("<%= notice %>")
 <h2> Comments </h2>
 
 <% @comments = fetch_comments(@blog) %>
+
+
 	<ol type="1">
 		<% @comments.each do |comment| %>
+
 		<li>
 			<div class = comment>
 				<ul>
-				<li><p><b> <%= comment.user.email %> </b> : <%= comment.content %> </p></li>
+				<li><p><b> <%= comment.user.email %> </b> : <%= comment.content %> </p></li>	
 				</ul>
 					<% if (current_user.email == comment.user.email) || (current_user.has_role? :admin) %>
 						<center><%= link_to 'Edit', edit_comment_path(comment) %> |
@@ -47,7 +46,7 @@ window.alert("<%= notice %>")
 
 	<%end%>
 	</ol>
-<p>write comment</p>
+<h3>write comment</h3>
 <%= render :partial => 'shared/comment_form' , locals: {comment: @comment, blog: @blog}%>
 
 	

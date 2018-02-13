@@ -4,13 +4,10 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    #@comments = Comment.all
   end
 
-  def fetch_comments(blog)
-    @comments = Comment.find_by_blog_id(blog.id)
-    return @comments
-  end
+
 
   # GET /comments/1
   # GET /comments/1.json

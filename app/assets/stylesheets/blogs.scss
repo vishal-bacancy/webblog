@@ -5,7 +5,8 @@
 	
 border: 1px;
 border-radius: 5px;
-border-color: #000000;
+border-style: solid;
+border-color: "black";
 background-color: #B5F9ED;
 width: 300px;
 
@@ -14,10 +15,11 @@ width: 300px;
 
 border: 1px;
 border-radius: 5px;
+border-style: dashed;
 border-color: #000000;
 background-color: #CEBDF3;
 margin-left: -5px;
 width: 300px;
-
+margin-bottom: 10px;
 
 }

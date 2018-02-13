@@ -1,4 +1,5 @@
 <%= form_with(model: comment, local: true) do |form| %>
+
   <% if comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -18,6 +19,8 @@
   
   <%= form.hidden_field :blog_id, value: blog.id%>
   <%= form.hidden_field :user_id, value: current_user.id%>
+  <% p_id = parent_comment.id if !parent_comment.nil? %>
+  <%= form.hidden_field :parent_comment_id, value: p_id%>
   <div class="actions">
     <%= form.submit %>
   </div>

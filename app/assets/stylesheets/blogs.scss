@@ -8,7 +8,7 @@ border-radius: 5px;
 border-style: solid;
 border-color: "black";
 background-color: #B5F9ED;
-width: 300px;
+width: 600px;
 
 }
 .comment{
@@ -19,7 +19,36 @@ border-style: dashed;
 border-color: #000000;
 background-color: #CEBDF3;
 margin-left: -5px;
+width: 600px;
+margin-bottom: 10px;
+
+}
+
+.reply {
+text-decoration: underline;
+color: #000000;
+ 
+ &:visited {
+    color: #666;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: #000;
+    cursor: pointer;
+  }
+}
+
+.subcomment{
+
+border: 1px;
+border-radius: 5px;
+border-style: dashed;
+border-color: #000000;
+background-color: #F6B872;
+margin-left: -5px;
 width: 300px;
 margin-bottom: 10px;
+
 
 }

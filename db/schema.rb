@@ -28,9 +28,11 @@ ActiveRecord::Schema.define(version: 20180212093804) do
     t.text "content"
     t.bigint "blog_id"
     t.bigint "user_id"
+    t.bigint "parent_comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["blog_id"], name: "index_comments_on_blog_id"
+    t.index ["parent_comment_id"], name: "index_comments_on_parent_comment_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 

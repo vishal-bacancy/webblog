@@ -3,6 +3,8 @@
 window.alert("<%= notice %>")
 </script>
 <% end %>
+<script type="text/javascript" src="/assets/javascripts/application.js"></script>
+
 
 <h2> Blog</h2>
 <div class =  blog >
@@ -24,35 +26,68 @@ window.alert("<%= notice %>")
 
 </div>
 
+<% if (current_user.email == @blog.user.email) || (current_user.has_role? :admin) %>
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<% end %>
+<%= link_to 'Back', blogs_path %>
+
 <h2> Comments </h2>
 
 <% @comments = fetch_comments(@blog) %>
 
 
 	<ol type="1">
-		<% @comments.each do |comment| %>
+		<% @comments.each_with_index do |comment, index| %>
 
-		<li>
-			<div class = comment>
-				<ul>
-				<li><p><b> <%= comment.user.email %> </b> : <%= comment.content %> </p></li>	
-				</ul>
+			<% if comment.parent_comment_id.nil? %>
+			<hr style="size: 500px;">
+				<li>
+				<div class = comment>
+					
+					<p style="margin-left: 5px;"><b> <%= comment.user.email %> </b> : <%= comment.content %> </p></li>	
+					
+
 					<% if (current_user.email == comment.user.email) || (current_user.has_role? :admin) %>
 						<center><%= link_to 'Edit', edit_comment_path(comment) %> |
-						<%= link_to 'delete', comment, method: :delete %></center>
+							<%= link_to 'delete', comment, method: :delete %> |
+						
+						
 					<% end %>
-			</div>
-		</li>
+							<t id="reply<%= index +1 %>" class="reply" onClick="change('inner_comment<%= index +1 %>','reply<%= index +1 %>')" >hide</t>
+						</center>
+						<% @subcomments = fetch_sub_comments(comment)  %>
+							<% @subcomments.each do |subcomment| %>
+							<div class = "subcomment">
+							<ul><li><p><b> <%= subcomment.user.email %> </b> : <%= subcomment.content %> </p></li></ul>
+							</div>	
+							<% if (current_user.email == subcomment.user.email) || (current_user.has_role? :admin) %>
+							<%= link_to 'Edit', edit_comment_path(subcomment) %> |
+							<%= link_to 'delete	', subcomment, method: :delete %> |
+								
+							
+							
+							
+						<% end %>
+
+
+
+						<% end %>
+
+
+
+						<div id="inner_comment<%= index +1 %>" class="inner_comment" style="display:block">
+								<%= render :partial => 'shared/comment_form' , locals: {comment: @comment, blog: @blog, parent_comment: comment }%>	
+							</div>
+				</div>
+							</li>
+			
+			<% end %>
 
 	<%end%>
 	</ol>
 <h3>write comment</h3>
-<%= render :partial => 'shared/comment_form' , locals: {comment: @comment, blog: @blog}%>
+<%= render :partial => 'shared/comment_form' , locals: {comment: @comment, blog: @blog, parent_comment: nil}%>
 
 	
 
 
-<% if (current_user.email == @blog.user.email) || (current_user.has_role? :admin) %>
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
-<% end %>
-<%= link_to 'Back', blogs_path %>

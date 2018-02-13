@@ -13,3 +13,16 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+function change(target,caller){
+	
+if (document.getElementById(target).style.display === "none"){
+document.getElementById(target).style.display = "block";
+document.getElementById(caller).innerHTML = "hide";
+}
+else
+{
+document.getElementById(target).style.display = "none";
+document.getElementById(caller).innerHTML = "comment";
+}
+
+}

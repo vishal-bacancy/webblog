@@ -1,14 +1,59 @@
-<p id="notice"><%= notice %></p>
+<% if !notice.nil? %>
+<script type="text/javascript">
+window.alert("<%= notice %>")
+</script>
+<% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @blog.title %>
-</p>
+<h2> Blog</h2>
+<div class =  blog >
+	<p>
+	  <strong>Title:</strong>
+	  <%= @blog.title %>
+	</p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @blog.content %>
-</p>
+	<p>
+	  <strong>Created by:</strong>
+	  <%= @blog.user.email %>
+	</p>
 
+	<p>
+	  <strong>Created at:</strong>
+	  <%= @blog.created_at %>
+	</p>
+
+	<p>
+	  <strong>Content:</strong>
+	  <%= @blog.content %>
+	</p>
+
+</div>
+
+<h2> Comments </h2>
+
+<% @comments = fetch_comments(@blog) %>
+	<ol type="1">
+		<% @comments.each do |comment| %>
+		<li>
+			<div class = comment>
+				<ul>
+				<li><p><b> <%= comment.user.email %> </b> : <%= comment.content %> </p></li>
+				</ul>
+					<% if (current_user.email == comment.user.email) || (current_user.has_role? :admin) %>
+						<center><%= link_to 'Edit', edit_comment_path(comment) %> |
+						<%= link_to 'delete', comment, method: :delete %></center>
+					<% end %>
+			</div>
+		</li>
+
+	<%end%>
+	</ol>
+<p>write comment</p>
+<%= render :partial => 'shared/comment_form' , locals: {comment: @comment, blog: @blog}%>
+
+	
+
+
+<% if (current_user.email == @blog.user.email) || (current_user.has_role? :admin) %>
 <%= link_to 'Edit', edit_blog_path(@blog) %> |
+<% end %>
 <%= link_to 'Back', blogs_path %>

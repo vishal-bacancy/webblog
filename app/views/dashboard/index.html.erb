@@ -2,7 +2,7 @@
 <% if current_user.nil? %>
 <h1>Webblog wesite is Here...</h1>
 <p>you need to first Create or Login into any Account</p>
-<center>
+
 <p>	<%= link_to "Sign up", new_user_registration_path %>  </p>
 <p>	OR </p>
 <p>	<%= link_to "Login", new_user_session_path %> </p>
@@ -12,5 +12,5 @@
 <p>	<%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
 
 <% end %>
-</center>
+
 

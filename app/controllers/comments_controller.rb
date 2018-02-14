@@ -32,6 +32,16 @@ class CommentsController < ApplicationController
     @blog = @comment.blog
     respond_to do |format|
       if @comment.save
+        s = @comment.parent_comment_id
+        
+        if s.nil?
+           ApplicationMailer.new_comment(@blog.user).deliver_now 
+        else
+          commen = Comment.find(s)
+          user = commen.user
+          ApplicationMailer.new_reply(user).deliver_now
+        end
+        
         format.html { redirect_to @blog, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else

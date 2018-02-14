@@ -40,7 +40,7 @@ window.alert("<%= notice %>")
 		<% @comments.each_with_index do |comment, index| %>
 
 			<% if comment.parent_comment_id.nil? %>
-			<hr style="size: 500px;">
+			
 				<li>
 				<div class = comment>
 					
@@ -80,7 +80,7 @@ window.alert("<%= notice %>")
 							</div>
 				</div>
 							</li>
-			
+			<hr class="scomm">
 			<% end %>
 
 	<%end%>

@@ -13,6 +13,7 @@ gem 'pg', '0.18.4'
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
+gem 'pry-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

@@ -16,14 +16,20 @@
 	<div class = head style="text-align: right;">
 		<% if current_user.nil? %>
 
-	<!-- 		<p>	<%= link_to "Sign up", new_user_registration_path %>  </p>
+		<!-- 	<p>	<%= link_to "Sign up", new_user_registration_path %>  </p>
 			<p>	OR </p>
-			<p>	<%= link_to "Login", new_user_session_path %> </p>
- -->
+			<p>	<%= link_to "Login", new_user_session_path %> </p> -->
+
 		<% else %>
 
-			<p>Hi, <%= current_user.email %></p>
+			<p>Hi,<%= :admin  if current_user.has_role? :admin %>, <%= current_user.email %></p>
       <p> <%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
+      <% if current_user.has_role? :admin %>
+      <p> <%= link_to "home", admin_dashboard_index_path %> </p>
+      <% else %>
+      <p> <%= link_to "home", blogs_path%> </p>
+      <% end %>
+
 
     <% end %>
     </div>

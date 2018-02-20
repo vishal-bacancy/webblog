@@ -1,0 +1,36 @@
+
+<h1>All Blogs</h1>
+<%=  link_to "+ New Blog +", adminblogs_new_path %>
+<p />
+<table border="1">
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>made by</th>
+      <th>total comments</th>
+      <th>Created At</th>
+      <th>last Updated</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blogs.each do |blog| %>
+      <tr>
+        <td><%= blog.title %></td>
+        <td><%= blog.user.email %></td>
+        <td><%= blog.comments.count %></td>
+        <td><%= time_ago_in_words(blog.created_at) %> Ago</td>
+        <td><%= time_ago_in_words(blog.updated_at) %> Ago</td>
+        <td><%= link_to 'Show', adminblog_path(blog) %></td>
+        <td><%= link_to 'Edit', edit_adminblog_path(blog) %></td>
+        <td><%= link_to 'Destroy', delete_adminblog_path(blog),  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+

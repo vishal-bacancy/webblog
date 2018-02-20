@@ -1,0 +1,31 @@
+<center><h1>AdminDashboard</h1></center>
+
+<br />
+<br />
+<center>
+	<table>
+		<tr>
+			<td>Total Users are </td>
+			<td>:</td>
+			<td><%= @total_user %></td>
+		</tr>
+
+		<tr>
+			<td>Total Blogs are </td>
+			<td>:</td>
+			<td><%= @total_blog %></td>
+		</tr>
+
+		<tr>
+			<td>Total Comments are </td>
+			<td>:</td>
+			<td><%= @total_comment %></td>
+		</tr>
+	</table>
+</center>
+
+
+<p><%=  link_to "Users", adminusers_index_path %></p>
+<p><%=  link_to "Blogs",  adminblogs_index_path %></p>
+<p><%=  link_to "Comments", admincomments_index_path %></p>
+

@@ -1,0 +1,48 @@
+<h1>User Profile </h1>
+<center>
+<table>
+	<tr>
+		<td>User Email</td>
+		 <td>:</td> 
+		 <td><%= @user.email%></td>
+	</tr>
+	<tr>
+		<td>User Total blogs</td>
+		<td>:</td>
+		<td><%= @user.blogs.count%></td>
+	</tr>
+	<tr>
+		<td>Followers  </td>
+		<td>:</td>
+		<td><%= link_to @user.followers.count  , followers_relationship_path %></td>
+	</tr>
+
+	<tr>
+		<td>Following  </td>
+		<td>:</td>
+		<td><%= link_to @user.following.count , following_relationship_path	 %></td>
+	</tr>
+
+</table>
+</center>
+<% if current_user != @user %> 
+	<% if current_user.following? @user %>
+		<%= render 'unfollow' %>
+	<%else %>
+		<%= render 'follow' %>
+	<%end
+
+end %>
+
+<% @user.blogs.order(created_at: :desc).each do |b| %>
+
+<p> <h4>Blog title : <b><%=b.title%></b></h4></p>
+<p> Created <%= time_ago_in_words(b.created_at) %> ago by <b><%= link_to b.user.email, adminuser_path(b.user) %></b></p>
+<p>Content : <%= b.content %></p>
+
+<td><%= link_to 'Open this Blog', b %></td>
+
+
+<hr class="scomm">
+
+<% end %>

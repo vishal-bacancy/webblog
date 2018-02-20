@@ -1,0 +1,38 @@
+
+<h1>All Users</h1>
+<%=  link_to "+ New User +", adminusers_new_path %>
+<p />
+<table border="1">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Registered At</th>
+      <th>last Updated</th>
+      <th>Login Count</th>
+      <th>Last Login</th>
+      <th>Last Login IP</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= time_ago_in_words(user.created_at) %> Ago</td>
+        <td><%= time_ago_in_words(user.updated_at) %> Ago</td>
+        <td><%= user.sign_in_count %></td>
+        <td><%= time_ago_in_words(user.last_sign_in_at) +" Ago" if !user.last_sign_in_at.nil? %> </td>
+        <td><%= user.last_sign_in_ip %></td>
+        <td><%= link_to 'Show', adminuser_path(user) %></td>
+        <td><%= link_to 'Edit', edit_adminuser_path(user) %></td>
+        <td><%= link_to 'Destroy', delete_adminuser_path(user),  method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+

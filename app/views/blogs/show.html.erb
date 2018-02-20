@@ -16,7 +16,7 @@ window.alert("<%= notice %>")
 	
 
 	<p>
-	  Created <%= time_ago_in_words(@blog.created_at) %> ago by <b><%= @blog.user.email %></b>
+	  Created <%= time_ago_in_words(@blog.created_at) %> ago by <b><%= link_to @blog.user.email, adminuser_path(@blog.user) %>  %></b>
 	</p>
 
 	<p>

@@ -21,8 +21,8 @@
 			<p>	<%= link_to "Login", new_user_session_path %> </p> -->
 
 		<% else %>
-
-			<p>Hi,<%= :admin  if current_user.has_role? :admin %>, <%= current_user.email %></p>
+      <%= image_tag current_user.image.url(:thumb) %>
+			<p>Hi,<%= (:admin)  if current_user.has_role? :admin %> <%= current_user.email %></p>
       <p> <%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
       <% if current_user.has_role? :admin %>
       <p> <%= link_to "home", admin_dashboard_index_path %> </p>

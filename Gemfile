@@ -14,6 +14,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 gem 'pry-rails'
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

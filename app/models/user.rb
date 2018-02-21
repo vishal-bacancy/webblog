@@ -2,8 +2,10 @@ class User < ApplicationRecord
   after_create :assign_role
   rolify
 
-  has_many :blogs
-  has_many :comments
+  has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  has_many :blogs, dependent: :delete_all
+  has_many :comments, dependent: :delete_all
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy
@@ -11,8 +13,8 @@ class User < ApplicationRecord
                                    foreign_key: "followed_id",
                                    dependent:   :destroy
 
-	has_many :following, through: :active_relationships, source: :followed                                  
-	has_many :followers, through: :passive_relationships, source: :follower
+	has_many :following, through: :active_relationships, source: :followed, dependent: :delete_all                                  
+	has_many :followers, through: :passive_relationships, source: :follower, dependent: :delete_all
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

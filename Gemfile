@@ -15,6 +15,9 @@ gem 'cancancan'
 gem 'rolify'
 gem 'pry-rails'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

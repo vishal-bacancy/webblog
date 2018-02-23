@@ -1,3 +1,4 @@
-$("#follow_form").html("<%= escape_javascript(render('adminusers/follow')) %>");
-	$("#followers").html('<%= @user.followers.count %>');
+$("#follow_form").html("<%= escape_javascript(render partial: 'adminusers/follow', locals:{ user: @user}) %>");
 
+$("#followers").html('<%= link_to @user.followers.count  , followers_relationship_path(@user)%>');
+$("#following").html('<%= link_to @user.following.count , following_relationship_path(@user)%>');

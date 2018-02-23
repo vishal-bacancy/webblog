@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   get 'admincomments/:id', to: 'admincomments#show', as: 'admincomment'
   delete 'admincomments/:id/destroy', to: 'admincomments#destroy', as: 'delete_admincomment' 
 
-
+ 
   resources :comments
   resources :blogs
   resources :relationships,       only: [:create, :destroy]

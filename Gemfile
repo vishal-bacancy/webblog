@@ -10,6 +10,7 @@ end
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
 gem 'pg', '0.18.4'
+gem 'jquery-rails'
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'

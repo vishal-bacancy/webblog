@@ -13,6 +13,8 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery
+//= require jquery_ujs
 function change(target,caller){
 	
 if (document.getElementById(target).style.display === "none"){

@@ -15,25 +15,28 @@
 	<tr>
 		<td>Followers  </td>
 		<td>:</td>
-		<td><%= link_to @user.followers.count  , followers_relationship_path, remote: true %></td>
+		<td><div id = "followers"><%= link_to @user.followers.count  , followers_relationship_path(@user)%></div></td>
 	</tr>
 
 	<tr>
 		<td>Following  </td>
 		<td>:</td>
-		<td><%= link_to @user.following.count , following_relationship_path, remote: true%></td>
+		<td><div id = "following"><%= link_to @user.following.count , following_relationship_path(@user)%></div></td>
 	</tr>
 
 </table>
 </center>
 <% if current_user != @user %> 
+<div id="follow_form">
 	<% if current_user.following? @user %>
-		<%= render 'unfollow' %>
+	
+		<%= render partial: 'unfollow', locals: {user: @user}  %>
 	<%else %>
-		<%= render 'follow' %>
-	<%end
+		<%= render partial: 'follow', locals: {user: @user}  %>
+	<%end%>
 
-end %>
+</div>
+<% end %>
 
 <% @user.blogs.order(created_at: :desc).each do |b| %>
 

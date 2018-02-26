@@ -7,6 +7,36 @@ class BlogsController < ApplicationController
     @usr = User.find_by_email(current_user.email)
   end
 
+  def download
+    @blog = Blog.find(params[:id])
+
+  end
+
+  def success
+  end
+
+  def payment
+
+     @amount = 10
+     @blog = Blog.find(params[:id])
+  customer = Stripe::Customer.create(
+    :email => params[:stripeEmail],
+    :source  => params[:stripeToken]
+  )
+
+  charge = Stripe::Charge.create(
+    :customer    => customer.id,
+    :amount      => @amount,
+    :description => 'downloading e copy of blog',
+    :currency    => 'inr'
+  )
+
+rescue Stripe::CardError => e
+  flash[:error] = e.message
+  redirect_to download_blog_path(@blog)
+
+  end
+
   # GET /blogs
   # GET /blogs.json
   def index

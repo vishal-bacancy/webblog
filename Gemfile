@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby "2.3.4"
+
 # Bunde edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
@@ -15,10 +15,13 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 gem 'pry-rails'
+gem 'stripe'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'whenever', require: false
+gem "capistrano", "~> 3.10", require: false
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

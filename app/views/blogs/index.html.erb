@@ -34,7 +34,7 @@
 <p> Created <%= time_ago_in_words(b.created_at) %> ago by <b><%= link_to b.user.email, adminuser_path(b.user) %></b></p>
 <p>Content : <%= b.content %></p>
 
-<td><%= link_to 'Open this Blog', b %></td>
+<td><%= link_to 'Open this Blog', b %> | <%= link_to 'download', download_blog_path(b) %></td>
 
 
 <hr class="scomm">

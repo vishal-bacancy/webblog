@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every :thursday, at: => '4pm' do
-	rake "greetings from the webblog"
+every 1.minute do
+	command "echo 'hello folks, have a nice day!!'"
 end

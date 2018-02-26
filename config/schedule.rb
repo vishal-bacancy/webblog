@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.minute do
+every 1.minute	 do
 	command "echo 'hello folks, have a nice day!!'"
 end

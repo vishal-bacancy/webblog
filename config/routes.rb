@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   require 'sidekiq/web'
  mount Sidekiq::Web, at: '/sidekiq'
   get 'relationships/create'

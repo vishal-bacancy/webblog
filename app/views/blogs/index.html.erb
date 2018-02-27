@@ -1,42 +1,28 @@
 
+
 <h1>Blogs</h1>
 
-<table border="1">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3">Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @blogs.each do |blo| %>
-      <tr>
-        <td><%= blo.title %></td>
-        <td><%= blo.content %></td>
-        <td><%= link_to 'Show', blo %></td>
-        <td><%= link_to 'Edit', edit_blog_path(blo) %></td>
-        <td><%= link_to 'Destroy', blo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Blog', new_blog_path %>
 
 
-<% Blog.all.order(created_at: :desc).each do |b| %>
+<h3><%= link_to 'Create New Blog', new_blog_path %></h3>
 
-<p> <h4>Blog title : <b><%=b.title%></b></h4></p>
-<p> Created <%= time_ago_in_words(b.created_at) %> ago by <b><%= link_to b.user.email, adminuser_path(b.user) %></b></p>
-<p>Content : <%= raw(b.content) %></p>
-
-<td><%= link_to 'Open this Blog', b %></td>
+<div id="blogDisplayType">
 
 
-<hr class="scomm">
 
-<% end %>
+<h3><%= link_to 'My Blogs', my_blogs_path, id: "myblogs", remote: true %></h3>
+<h3><%= link_to 'All Blogs', all_blogs_path, id: "allblogs", remote: true%></h3>
+
+
+</div>
+
+
+<div class="blogs">
+
+  
+
+
+</div>
+
+
+

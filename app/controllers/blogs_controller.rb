@@ -2,6 +2,7 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :set_user
+  respond_to :html, :js
 
   def set_user
     @usr = User.find_by_email(current_user.email)
@@ -11,6 +12,26 @@ class BlogsController < ApplicationController
   # GET /blogs.json
   def index
     @blogs = @usr.blogs.order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def all_blogs
+    @blogs = Blog.all.order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+  
+  def my_blogs
+    @blogs = @usr.blogs.order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /blogs/1

@@ -1,0 +1,10 @@
+<% @blogs.each do |blog| %>
+
+	
+    <h3>Title : <%= link_to blog.title, blog %> </h4>
+    	<h5>Created by <%= blog.user.fname%> <%= blog.user.lname%>, <%=time_ago_in_words(blog.created_at) Ago </h5>
+    <br />
+    <p>Content : <%= raw(blog.content) %> </p>
+
+    <hr class="scomm">
+  <%end%>

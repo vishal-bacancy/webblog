@@ -45,15 +45,21 @@ Rails.application.routes.draw do
   get 'admincomments/:id/edit', to: 'admincomments#edit', as: 'edit_admincomment'
   get 'admincomments/:id', to: 'admincomments#show', as: 'admincomment'
   delete 'admincomments/:id/destroy', to: 'admincomments#destroy', as: 'delete_admincomment' 
+  get 'blogs/all', to: 'blogs#all_blogs', as: 'all_blogs'
+  get 'blogs/your', to: 'blogs#my_blogs', as: 'my_blogs'
 
- 
   resources :comments
   resources :blogs
   resources :relationships,       only: [:create, :destroy]
   devise_for :users, controllers: {
-        sessions: 'users/sessions'
+        sessions: 'users/sessions',
+        registrations: 'users/registrations'
       }
 
+  devise_scope :user do
+  get ':id/edit-profile' => 'users/registrations#edit', :as => 'edit_user_profile'
+  
+  end
     resources :relationships do
     member do
       get :following, :followers

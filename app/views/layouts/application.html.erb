@@ -22,8 +22,10 @@
 
 		<% else %>
       <%= image_tag current_user.image.url(:thumb), class: "profile_photo"%>
-			<p>Hi,<%= (:admin)  if current_user.has_role? :admin %> <%= current_user.email %></p>
+			<p>Hi,<%= (:admin)  if current_user.has_role? :admin %> <%= current_user.fname %></p>
       <p> <%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
+      <p> <%= link_to "Edit Profile", edit_user_profile_path(current_user)%> </p>
+
       <% if current_user.has_role? :admin %>
       <p> <%= link_to "home", admin_dashboard_index_path %> </p>
       <% else %>

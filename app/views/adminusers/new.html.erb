@@ -10,6 +10,16 @@
       </ul>
     </div>
   <% end %>
+   <div class="field">
+    <%= form.label :First_Name %><br />
+    <%= form.text_field :fname, autofocus: true, autocomplete: "fname" %>
+  </div>
+
+   <div class="field">
+    <%= form.label :Last_Name %><br />
+    <%= form.text_field :lname, autofocus: true, autocomplete: "lname" %>
+  </div>
+
 
   <div class="field">
     <%= form.label :email %>

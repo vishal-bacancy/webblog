@@ -1,0 +1,8 @@
+<% @blogs.each do |blog| %>
+
+    <p>Title : <%= link_to blog.title, blog %> </p>
+    <br />
+    <p>Content : <%= raw(blog.content) %> </p>
+
+    <hr class="scomm">
+  <%end%>

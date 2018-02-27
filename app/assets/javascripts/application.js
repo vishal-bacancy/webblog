@@ -13,9 +13,9 @@
 //= require rails-ujs
 //= require turbolinks
 //= require ckeditor/init
-//= require_tree .
 //= require jquery
 //= require jquery_ujs
+//= require_tree .
 
 function change(target,caller){
 	
@@ -30,3 +30,4 @@ document.getElementById(caller).innerHTML = "comment";
 }
 
 }
+

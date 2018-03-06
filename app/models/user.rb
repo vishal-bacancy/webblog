@@ -2,7 +2,7 @@ class User < ApplicationRecord
   after_create :assign_role
   rolify
 
-  has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "50x50>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
   has_many :blogs, dependent: :delete_all
   has_many :comments, dependent: :delete_all

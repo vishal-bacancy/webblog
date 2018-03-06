@@ -13,10 +13,10 @@
 //= require rails-ujs
 //= require turbolinks
 //= require ckeditor/init
+//= require gmap3.min
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-
 function change(target,caller){
 	
 if (document.getElementById(target).style.display === "none"){

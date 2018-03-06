@@ -4,6 +4,8 @@ class BlogsController < ApplicationController
   before_action :set_user
   respond_to :html, :js
 
+  
+
   def set_user
     @usr = User.find_by_email(current_user.email)
   end
@@ -11,6 +13,7 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
+    @blog = Blog.new
     @blogs = @usr.blogs.order(created_at: :desc)
     respond_to do |format|
       format.html

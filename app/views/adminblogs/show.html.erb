@@ -1,4 +1,4 @@
 <h1>Adminblogs#show</h1>
 <p>Find me in app/views/adminblogs/show.html.erb</p>
 <p><%= @blog.title%></p>
-<p><%= @blog.content%></p>
+<p><%= raw(@blog.content)%></p>

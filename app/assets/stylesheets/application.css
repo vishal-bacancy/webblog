@@ -28,3 +28,31 @@ img {
     height: 100%;
     width: auto;
 }
+
+.header-list li{
+	padding-right: 5px;
+}
+.header-list li a{
+	padding-right: 5px;
+	text-decoration-line: none;
+	color: red;
+}
+
+.header-list li a:hover{
+	padding-right: 5px;
+	text-decoration-line: underline;
+	color: blue;
+	background-color: transparent;
+}
+
+.menu:hover{
+	color: blue;
+	cursor: pointer;
+}
+.head {
+margin-top: 0px;
+background-color: #A51AEA;
+border-radius: 5px;
+
+
+}

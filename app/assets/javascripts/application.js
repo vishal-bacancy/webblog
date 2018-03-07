@@ -13,7 +13,6 @@
 //= require rails-ujs
 //= require turbolinks
 //= require ckeditor/init
-//= require gmap3.min
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
@@ -30,4 +29,15 @@ document.getElementById(caller).innerHTML = "comment";
 }
 
 }
+
+$(document).ready(function(){
+$('.header-list').find('li').css({display: "inline"});
+
+$('.menu').on('click',function(){
+	$('#blogDisplayType').slideToggle();
+
+});
+
+
+});
 

@@ -1,21 +1,21 @@
 
 
 
-<h1>Blogs</h1>
 
 
 
+
+
+
+
+<h1 class="menu">Blogs</h1>
+<div id="blogDisplayType" style="display: none;">
 <h3><%= link_to 'Create New Blog', new_blog_path %></h3>
-
-<div id="blogDisplayType">
-
-
-
 <h3><%= link_to 'My Blogs', my_blogs_path, id: "myblogs", remote: true %></h3>
 <h3><%= link_to 'All Blogs', all_blogs_path, id: "allblogs", remote: true%></h3>
-
-
 </div>
+
+
 
 
 <div class="blogs">

@@ -29,14 +29,6 @@
   <br />
     <p>Content : <%= raw(blog.content) %> </p>
 
-    <% if ((current_user.has_role? :admin) || (current_user.email == blog.user.email)  ) %>
-
-    <%= link_to 'Edit', edit_blog_path(blog) %> |
-    <%= link_to 'Destroy', blog ,  method: :delete, data: { confirm: 'Are you sure?' } %>
-    
-
-    <% end %>
-
     <hr class="scomm">
   <%end%>
 

@@ -8,10 +8,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
+
+
   <body>
 
   	<!-- <p class="notice"><%= notice %></p> -->
     <p class="alert"><%= alert %></p>
+    <div class="easy-autocomplete" align="center">
+        <%= form_with url: search_path, local: true, method: :get, html: {class: "search-form"} do |form| %>
+          <%= form.text_field :term, placeholder: "search", data: {behavior: "autocomplete"},class: "search"%>
+          <%= form.button "Search", class: "search-button" %>
+        <% end%>
+    </div>
 
 	<div class = "head" style="text-align: right;">
 		<% if current_user.nil? %>

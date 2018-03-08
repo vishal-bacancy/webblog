@@ -2,12 +2,27 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :set_user
+
   respond_to :html, :js
 
   
 
   def set_user
     @usr = User.find_by_email(current_user.email)
+  end
+
+  def search
+    @blogs =  Blog.ransack(title_cont: params[:term]).result(distinct: true)
+    @users =  User.ransack(fname_cont: params[:term]).result(distinct: true)
+    respond_to do |format|
+      format.html {}
+      format.json {
+        @blogs = @blogs.limit(5)
+        @users = @users.limit(5)  
+
+      }
+    end
+
   end
 
   # GET /blogs

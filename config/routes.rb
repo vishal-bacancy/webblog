@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   get 'adminusers/index'
 
   get 'adminusers/new'
+
+  get :autocomplete, controller: :blogs
+  get :search, controller: :blogs
   
   post 'adminusers/create'
   patch 'adminusers/update'

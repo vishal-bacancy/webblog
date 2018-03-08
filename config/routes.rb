@@ -52,7 +52,12 @@ Rails.application.routes.draw do
   get 'blogs/your', to: 'blogs#my_blogs', as: 'my_blogs'
 
   resources :comments
-  resources :blogs
+  resources :blogs do 
+  member do
+    put "like", to: "blogs#upvote"
+    put "dislike", to: "blogs#downvote"
+  end
+end
   resources :relationships,       only: [:create, :destroy]
   devise_for :users, controllers: {
         sessions: 'users/sessions',

@@ -5,7 +5,28 @@ class BlogsController < ApplicationController
 
   respond_to :html, :js
 
-  
+  def upvote 
+    @blog = Blog.find(params[:id])
+    @blog.upvote_by current_user    
+    respond_to do |format|
+      format.html 
+      format.js{
+         render :template => "blogs/index.js.erb"                
+     }
+    end
+    
+  end  
+
+  def downvote
+    @blog = Blog.find(params[:id])
+    @blog.downvote_by current_user
+    respond_to do |format|
+      format.html 
+      format.js{
+        render :template => "blogs/index.js.erb"
+     }
+  end
+  end
 
   def set_user
     @usr = User.find_by_email(current_user.email)
@@ -119,4 +140,5 @@ class BlogsController < ApplicationController
     def blog_params
       params.require(:blog).permit(:title, :content)
     end
+
 end

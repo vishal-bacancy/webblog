@@ -19,6 +19,7 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'acts_as_votable', '~> 0.10.0'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'ransack', '~> 1.7'
 # Use Puma as the app server

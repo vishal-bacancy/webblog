@@ -47,7 +47,7 @@ img {
 	background-color: transparent;
 }
 
-.menu:hover{
+#menu:hover{
 	color: blue;
 	cursor: pointer;
 }
@@ -63,4 +63,8 @@ border-radius: 5px;
 height: 25px;
 width: 130px;
 
+}
+.hide{
+
+	display: none;
 }

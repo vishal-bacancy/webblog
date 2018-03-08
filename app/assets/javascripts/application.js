@@ -31,12 +31,13 @@ document.getElementById(caller).innerHTML = "comment";
 
 }
 
+
 $(document).ready(function(){
 $('.header-list').find('li').css({display: "inline"});
 
-$('.menu').on('click',function(){
+$('#menu').unbind('click').click(function(){
 	$('#blogDisplayType').slideToggle();
-
+  // your code here
 });
 $input = $("[data-behavior='autocomplete']")
 

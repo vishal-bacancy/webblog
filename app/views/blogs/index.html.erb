@@ -1,8 +1,8 @@
 
 
-
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-<h1 class="menu">Blogs</h1>
+<h1 id="menu">Blogs</h1>
 <div id="blogDisplayType" style="display: none;">
 <h3><%= link_to 'Create New Blog', new_blog_path %></h3>
 <h3><%= link_to 'My Blogs', my_blogs_path, id: "myblogs", remote: true %></h3>
@@ -28,7 +28,11 @@
     
 
     <% end %>
-
+    <div class="like-div">
+    <%= render partial: 'upvote', locals:{ blog: blog} %>
+  &nbsp;
+ <%= render partial: 'downvote', locals:{ blog: blog} %>
+</div>
     <hr class="scomm">
   <%end%>
 

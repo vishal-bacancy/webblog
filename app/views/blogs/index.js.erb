@@ -1,0 +1,1 @@
+$('.like-div').html("<%= escape_javascript(render partial: 'upvote', locals:{ blog: @blog}) %>&nbsp;<%= escape_javascript(render partial: 'downvote', locals:{ blog: @blog}) %>")

@@ -13,8 +13,10 @@
     
 
     <% end %>
-     <div class="like-div">
+     <div class="like-div" id="<%= blog.id%>_votes">
+
     <%= render partial: 'upvote', locals:{ blog: blog} %>
+
     &nbsp;
     <%= render partial: 'downvote', locals:{ blog: blog} %>
   </div>

@@ -1,3 +1,4 @@
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 <% @blogs.each do |blog| %>
 
   <h3>Title : <%= link_to blog.title, blog %> </h4>

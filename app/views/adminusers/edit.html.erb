@@ -1,3 +1,4 @@
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 <%= form_for @user, :url => url_for(controller: 'adminusers', action: 'update') do |form| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">

@@ -1,3 +1,4 @@
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 <%= form_with(model: comment, local: true) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">

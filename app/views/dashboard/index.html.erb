@@ -20,3 +20,24 @@
 <% end %>
 
 
+<div class="blogs">
+
+ <% Blog.all.order(created_at: :desc).each do |blog| %>
+
+  <h3>Title : <%= link_to blog.title, blog %> </h4>
+  <h5>Created by <%= link_to blog.user.fname, adminuser_path(blog.user)%>, <%=time_ago_in_words(blog.created_at)%> Ago </h5>
+  <br />
+    <p>Content : <%= raw(blog.content) %> </p>
+
+    <% if ((current_user.has_role? :admin) || (current_user.email == blog.user.email)  ) %>
+
+    <%= link_to 'Edit', edit_blog_path(blog) %> |
+    <%= link_to 'Destroy', blog ,  method: :delete, data: { confirm: 'Are you sure?' } %>
+    
+
+    <% end %>
+
+    <hr class="scomm">
+  <%end%>
+
+</div>

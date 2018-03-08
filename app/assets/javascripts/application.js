@@ -49,11 +49,11 @@ $input = $("[data-behavior='autocomplete']")
     categories: [
       {
         listLocation: "blogs",
-        header: "<strong>Blogs</strong>",
+        header: "<strong> >>> Blogs <<< </strong>",
       },
       {
         listLocation: "users",
-        header: "<strong>Users</strong>",
+        header: "<strong> >>> Users <<< </strong>",
       }
     ],
     list: {

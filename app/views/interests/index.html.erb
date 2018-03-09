@@ -1,0 +1,21 @@
+ 
+
+<p id="notice"><%= notice %></p>
+
+<h1>Interests</h1>
+
+
+  <ul id="interests" data-update-url="<%= sort_interests_url%>">
+    <% @interests.each do |interest| %>
+      <%= content_tag_for :li, interest do%>
+        <%= interest.name %>
+        <%= link_to 'Show', interest %>
+        <%= link_to 'Edit', edit_interest_path(interest) %>
+      <%end%>
+    <% end %>
+  </ul>
+</table>
+
+<br>
+
+<%= link_to 'New Interest', new_interest_path %>

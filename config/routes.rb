@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :interests do
+    collection { post :sort}
+  end
   mount Ckeditor::Engine => '/ckeditor'
   require 'sidekiq/web'
  mount Sidekiq::Web, at: '/sidekiq'
@@ -75,5 +78,6 @@ end
   end
       #get '/getconfirm/', to: 'dashboard#before_confirmation', as: 'email_confirmation_page'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'dashboard#index'
+  #root 'dashboard#index'
+  root 'interests#index'
 end

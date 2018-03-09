@@ -15,6 +15,7 @@
 //= require ckeditor/init
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui 
 //= require jquery.easy-autocomplete
 //= require_tree .
 function change(target,caller){
@@ -33,7 +34,15 @@ document.getElementById(caller).innerHTML = "comment";
 
 
 $(document).ready(function(){
-$('.header-list').find('li').css({display: "inline"});
+$('#header-list li').css({display: "inline"});
+$('#interests li').css({display: "list-item"});
+$('#interests').sortable({
+  axis: "y",
+  update: function(event,ui){
+    alert
+    $.post($(this).data('update-url'),$(this).sortable('serialize'));
+  }
+});
 
 $('#menu').unbind('click').click(function(){
 	$('#blogDisplayType').slideToggle();

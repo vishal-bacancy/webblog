@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Movies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<%= paginate @movies, window: 1%>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%=link_to movie.title, movie %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Movie', new_movie_path %>

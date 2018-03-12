@@ -77,6 +77,16 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     @comment = Comment.new
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf do
+        render pdf: "blog",
+               template: 'blogs/blog.pdf.erb',
+               locals: {blog: @blog}
+      end
+    end
+
   end
 
   # GET /blogs/new

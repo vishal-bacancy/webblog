@@ -17,7 +17,15 @@ class AdminblogsController < ApplicationController
   def show
 
   	@blog = Blog.find(params[:id])
-
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf do
+        render pdf: "blog",
+               template: 'blogs/blog.pdf.erb',
+               locals: {blog: @blog}
+      end
+    end
   end
 
   def create

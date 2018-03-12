@@ -23,6 +23,10 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'ransack', '~> 1.7'
 gem 'record_tag_helper', '~> 1.0'
+gem 'kaminari'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

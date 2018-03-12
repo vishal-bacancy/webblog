@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :movies
   resources :interests do
     collection { post :sort}
   end
@@ -79,5 +80,5 @@ end
       #get '/getconfirm/', to: 'dashboard#before_confirmation', as: 'email_confirmation_page'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #root 'dashboard#index'
-  root 'interests#index'
+  root 'blogs#index'
 end

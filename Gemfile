@@ -23,6 +23,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'ransack', '~> 1.7'
 gem 'bullet', group: 'development'
+gem 'mailboxer', '~> 0.15.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

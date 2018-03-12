@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'messages/index'
+
+  get 'messages/show'
+
+  get 'conversations/index'
+
   mount Ckeditor::Engine => '/ckeditor'
   require 'sidekiq/web'
  mount Sidekiq::Web, at: '/sidekiq'
@@ -73,6 +79,10 @@ end
       get :following, :followers
     end
   end
+  resources :conversations do
+    resources :messages
+  end
+
       #get '/getconfirm/', to: 'dashboard#before_confirmation', as: 'email_confirmation_page'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'dashboard#index'

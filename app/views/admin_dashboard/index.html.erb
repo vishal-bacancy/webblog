@@ -29,7 +29,7 @@
 
 <div class="blogs">
 
- <% Blog.all.order(created_at: :desc).each do |blog| %>
+ <% Blog.all.order(created_at: :desc).includes(:user).each do |blog| %>
 
   <h3>Title : <%= link_to blog.title, blog %> </h4>
   <h5>Created by <%= link_to blog.user.fname, adminuser_path(blog.user)%>, <%=time_ago_in_words(blog.created_at)%> Ago </h5>

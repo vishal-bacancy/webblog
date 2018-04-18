@@ -36,7 +36,7 @@ class BlogsController < ApplicationController
     @blogs =  Blog.ransack(title_cont: params[:term]).result(distinct: true)
     @users =  User.ransack(fname_cont: params[:term]).result(distinct: true)
     respond_to do |format|
-      format.html {}
+      format.html {}  
       format.json {
         @blogs = @blogs.limit(5)
         @users = @users.limit(5)  

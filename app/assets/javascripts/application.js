@@ -14,7 +14,6 @@
 //= require turbolinks
 //= require ckeditor/init
 //= require jquery
-//= require jquery_ujs
 //= require jquery.easy-autocomplete
 //= require_tree .
 function change(target,caller){

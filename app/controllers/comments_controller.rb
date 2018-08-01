@@ -41,8 +41,8 @@ class CommentsController < ApplicationController
         else
           commen = Comment.find(s)
           user = commen.user
-          ApplicationMailer.new_reply(user).deliver_now 
-          #EmailsWorker.perform_async(user.id,2)
+          #ApplicationMailer.new_reply(user).deliver_now 
+          EmailsWorker.perform_async(user.id,2)
         end
         
         format.html { redirect_to @blog, notice: 'Comment was successfully created.' }

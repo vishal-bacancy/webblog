@@ -33,7 +33,6 @@ class AdmincommentsController < ApplicationController
 
   	@comment = Comment.find(params[:user][:id])
     if @comment.update(get_params)
-    binding.pry
 
       redirect_to admincomments_index_path
   	else

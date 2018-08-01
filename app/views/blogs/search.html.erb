@@ -1,0 +1,17 @@
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<div class="row">
+  <div class="col">
+    <h1>Blogs</h1>
+    <% @blogs.each do |blog| %>
+      <p><%= link_to blog.title, blog %></p>
+    <% end %>
+  </div>
+
+  <div class="col">
+    <h1>Bloggers</h1>
+    <% @users.each do |user| %>
+      <p><%= link_to user.fname, adminuser_path(user) %></p>
+    <% end %>
+  </div>
+</div>
+

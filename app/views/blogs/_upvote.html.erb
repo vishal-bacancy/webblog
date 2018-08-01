@@ -1,0 +1,5 @@
+ 
+ <%= link_to like_blog_path(blog), method: :put, remote: true,class: "upvote" do %>
+    Like
+    <%= blog.get_upvotes.size %>
+  <% end %>

@@ -33,7 +33,6 @@ class AdminusersController < ApplicationController
 
   	@user = User.find(params[:user][:id])
     if @user.update(get_params)
-    binding.pry
 
       redirect_to adminusers_index_path
   	else
@@ -51,7 +50,7 @@ class AdminusersController < ApplicationController
   end
 
   def get_params
-  	params.require(:user).permit(:email,:password,:password_confirmation)
+  	params.require(:user).permit(:fname,:lname,:email,:password,:password_confirmation)
   end
 
 

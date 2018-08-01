@@ -1,3 +1,4 @@
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 <%= form_for @user, :url => url_for(controller: 'adminusers', action: 'create') do |form| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -10,6 +11,16 @@
       </ul>
     </div>
   <% end %>
+   <div class="field">
+    <%= form.label :First_Name %><br />
+    <%= form.text_field :fname, autofocus: true, autocomplete: "fname" %>
+  </div>
+
+   <div class="field">
+    <%= form.label :Last_Name %><br />
+    <%= form.text_field :lname, autofocus: true, autocomplete: "lname" %>
+  </div>
+
 
   <div class="field">
     <%= form.label :email %>

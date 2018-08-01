@@ -1,4 +1,4 @@
-
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 <h1>All Users</h1>
 <%=  link_to "+ New User +", adminusers_new_path %>
 <p />
@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Photo</th>
+      <th>Name</th>
       <th>Email</th>
       <th>Registered At</th>
       <th>last Updated</th>
@@ -20,6 +21,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= image_tag user.image.url(:thumb) %></td>
+        <td><%= user.fname %> <%= user.lname %> </td>
         <td><%= user.email %></td>
         <td><%= time_ago_in_words(user.created_at) %> Ago</td>
         <td><%= time_ago_in_words(user.updated_at) %> Ago</td>

@@ -3,14 +3,74 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
 
+  respond_to :html, :js
+
+  def upvote 
+    @blog = Blog.find(params[:id])
+    @blog.upvote_by current_user    
+    respond_to do |format|
+      format.html 
+      format.js{
+         render :template => "blogs/index.js.erb"                
+     }
+    end
+    
+  end  
+
+  def downvote
+    @blog = Blog.find(params[:id])
+    @blog.downvote_by current_user
+    respond_to do |format|
+      format.html 
+      format.js{
+        render :template => "blogs/index.js.erb"
+     }
+  end
+  end
+
   def set_user
     @usr = User.find_by_email(current_user.email)
+  end
+
+  def search
+    @blogs =  Blog.ransack(title_cont: params[:term]).result(distinct: true)
+    @users =  User.ransack(fname_cont: params[:term]).result(distinct: true)
+    respond_to do |format|
+      format.html {}  
+      format.json {
+        @blogs = @blogs.limit(5)
+        @users = @users.limit(5)  
+
+      }
+    end
+
   end
 
   # GET /blogs
   # GET /blogs.json
   def index
+    @blog = Blog.new
     @blogs = @usr.blogs.order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def all_blogs
+    @blogs = Blog.all.order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+  
+  def my_blogs
+    @blogs = @usr.blogs.order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /blogs/1
@@ -80,4 +140,5 @@ class BlogsController < ApplicationController
     def blog_params
       params.require(:blog).permit(:title, :content)
     end
+
 end

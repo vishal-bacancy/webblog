@@ -1,4 +1,5 @@
 
+
 <h1>Blogs</h1>
 
 <table border="1">
@@ -23,20 +24,42 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Blog', new_blog_path %>
-
-
-<% Blog.all.order(created_at: :desc).each do |b| %>
-
-<p> <h4>Blog title : <b><%=b.title%></b></h4></p>
-<p> Created <%= time_ago_in_words(b.created_at) %> ago by <b><%= link_to b.user.email, adminuser_path(b.user) %></b></p>
-<p>Content : <%= raw(b.content) %></p>
-
-<td><%= link_to 'Open this Blog', b %></td>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<h1 id="menu">Blogs</h1>
+<div id="blogDisplayType" style="display: none;">
+<h3><%= link_to 'Create New Blog', new_blog_path %></h3>
+<h3><%= link_to 'My Blogs', my_blogs_path, id: "myblogs", remote: true %></h3>
+<h3><%= link_to 'All Blogs', all_blogs_path, id: "allblogs", remote: true%></h3>
+</div>
 
 
-<hr class="scomm">
 
-<% end %>
+
+<div class="blogs">
+
+ <% Blog.all.order(created_at: :desc).includes(:user).each do |blog| %>
+
+  <h3>Title : <%= link_to blog.title, blog %> </h4>
+  <h5>Created by <%= link_to blog.user.fname, adminuser_path(blog.user)%>, <%=time_ago_in_words(blog.created_at)%> Ago </h5>
+  <br />
+    <p>Content : <%= raw(blog.content) %> </p>
+
+    <% if ((current_user.has_role? :admin) || (current_user.email == blog.user.email)  ) %>
+
+    <%= link_to 'Edit', edit_blog_path(blog) %> |
+    <%= link_to 'Destroy', blog ,  method: :delete, data: { confirm: 'Are you sure?' } %>
+    
+
+    <% end %>
+    <div class="like-div" id="<%= blog.id%>_votes">
+    <%= render partial: 'upvote', locals:{ blog: blog} %>
+  &nbsp;
+ <%= render partial: 'downvote', locals:{ blog: blog} %>
+</div>
+    <hr class="scomm">
+  <%end%>
+</div>
+
+
+

@@ -1,4 +1,4 @@
-
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 <% if current_user.nil? %>
 <h1>Webblog wesite is Here...</h1>
 
@@ -17,7 +17,21 @@
 <p> <%= current_user.email %></p>
 <p>	<%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
 
-
 <% end %>
 
 
+<div class="blogs">
+
+ <% Blog.all.order(created_at: :desc).includes(:user).each do |blog| %>
+
+  <h3>Title : <%= link_to blog.title, blog %> </h4>
+  <h5>Created by <%= link_to blog.user.fname, adminuser_path(blog.user)%>, <%=time_ago_in_words(blog.created_at)%> Ago </h5>
+  <br />
+    <p>Content : <%= raw(blog.content) %> </p>
+
+    <hr class="scomm">
+  <%end%>
+
+ 
+	
+</div>

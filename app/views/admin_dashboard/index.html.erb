@@ -1,3 +1,4 @@
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 <center><h1>AdminDashboard</h1></center>
 
 <br />
@@ -9,25 +10,43 @@
 		<tr>
 			<td>Total Users are </td>
 			<td>:</td>
-			<td><%= @total_user %></td>
+			<td><%= link_to @total_user, adminusers_index_path %></td>
 		</tr>
 
 		<tr>
 			<td>Total Blogs are </td>
 			<td>:</td>
-			<td><%= @total_blog %></td>
+			<td><%=link_to @total_blog,  adminblogs_index_path %></td>
 		</tr>
 
 		<tr>
 			<td>Total Comments are </td>
 			<td>:</td>
-			<td><%= @total_comment %></td>
+			<td><%= link_to @total_comment, admincomments_index_path  %></td>
 		</tr>
 	</table>
 </center>
 
+<div class="blogs">
 
-<p><%=  link_to "Users", adminusers_index_path %></p>
-<p><%=  link_to "Blogs",  adminblogs_index_path %></p>
-<p><%=  link_to "Comments", admincomments_index_path %></p>
+ <% Blog.all.order(created_at: :desc).includes(:user).each do |blog| %>
+
+  <h3>Title : <%= link_to blog.title, blog %> </h4>
+  <h5>Created by <%= link_to blog.user.fname, adminuser_path(blog.user)%>, <%=time_ago_in_words(blog.created_at)%> Ago </h5>
+  <br />
+    <p>Content : <%= raw(blog.content) %> </p>
+
+    <% if ((current_user.has_role? :admin) || (current_user.email == blog.user.email)  ) %>
+
+    <%= link_to 'Edit', edit_blog_path(blog) %> |
+    <%= link_to 'Destroy', blog ,  method: :delete, data: { confirm: 'Are you sure?' } %>
+    
+
+    <% end %>
+
+    <hr class="scomm">
+  <%end%>
+
+</div>
+
 

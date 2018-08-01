@@ -12,9 +12,10 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
+//= require ckeditor/init
 //= require jquery
-//= require jquery_ujs
+//= require jquery.easy-autocomplete
+//= require_tree .
 function change(target,caller){
 	
 if (document.getElementById(target).style.display === "none"){
@@ -28,3 +29,42 @@ document.getElementById(caller).innerHTML = "comment";
 }
 
 }
+
+
+$(document).ready(function(){
+$('.header-list').find('li').css({display: "inline"});
+
+$('#menu').unbind('click').click(function(){
+	$('#blogDisplayType').slideToggle();
+  // your code here
+});
+$input = $("[data-behavior='autocomplete']")
+
+  var options = {
+    getValue: "name",
+    url: function(phrase) {
+      return "/search.json?term=" + phrase;
+    },
+    categories: [
+      {
+        listLocation: "blogs",
+        header: "<strong> >>> Blogs <<< </strong>",
+      },
+      {
+        listLocation: "users",
+        header: "<strong> >>> Users <<< </strong>",
+      }
+    ],
+    list: {
+      onChooseEvent: function( ) {
+        var url = $input.getSelectedItemData().url
+        $input.val("")
+        Turbolinks.visit(url)
+      }
+    }
+  }
+
+  $input.easyAutocomplete(options)
+
+});
+

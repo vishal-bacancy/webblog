@@ -1,0 +1,4 @@
+ <%= link_to dislike_blog_path(blog), method: :put, remote: true, class: "downvote" do %>
+    Dislike
+    <%= blog.get_downvotes.size %>
+  <% end %>

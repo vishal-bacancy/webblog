@@ -1,0 +1,22 @@
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<% @blogs.each do |blog| %>
+
+  <h3>Title : <%= link_to blog.title, blog %> </h4>
+  <h5>Created by <%= link_to blog.user.fname, adminuser_path(blog.user)%>, <%=time_ago_in_words(blog.created_at)%> Ago </h5>
+  <br />
+    <p>Content : <%= raw(blog.content) %> </p>
+
+    <% if ((current_user.has_role? :admin) || (current_user.email == blog.user.email)  ) %>
+
+    <%= link_to 'Edit', edit_blog_path(blog) %> |
+    <%= link_to 'Destroy', blog ,  method: :delete, data: { confirm: 'Are you sure?' } %>
+    
+
+    <% end %>
+     <div class="like-div" id="<%= blog.id%>_votes">
+    <%= render partial: 'upvote', locals:{ blog: blog} %>
+    &nbsp;
+    <%= render partial: 'downvote', locals:{ blog: blog} %>
+  </div>
+    <hr class="scomm">
+  <%end%>

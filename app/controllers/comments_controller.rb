@@ -35,8 +35,8 @@ class CommentsController < ApplicationController
         s = @comment.parent_comment_id
         
         if s.nil?
-          #ApplicationMailer.new_comment(@blog.user).deliver_now 
-          EmailsWorker.perform_async(@blog.user.id,1)
+          ApplicationMailer.new_comment(@blog.user).deliver_now 
+          #EmailsWorker.perform_async(@blog.user.id,1)
            
         else
           commen = Comment.find(s)
